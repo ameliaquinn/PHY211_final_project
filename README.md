@@ -1,2 +1,4 @@
 # PHY211_final_project
 Hello! My name is Amelia Quinn and this is my GitHub repository for my final project in PHY 211 Computational Methods in the Physical Sciences. This package makes use of the Qiskit quantum computing package by IBM, in which I have organized the Qiskit functionality into easy-to-follow functions. The primary purpose of this package is to experimentally prove Bell's Theorem using the CHSH inequality, in which we build a quantum circuit and take measurements over a sweep of angle rotations (actually sending the code to real IBM hardware in order to run!)
+
+This package requires Python >= 3.10, as well as the packages numpy, matplotlib, qiskit, and qiskit_ibm_runtime. To install and import the package, clone this repository using "git clone" and run the code on your favorite platform! 
