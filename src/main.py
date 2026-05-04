@@ -13,6 +13,10 @@ from matplotlib import pyplot as plt
 from matplotlib import ticker as tck
 
 
+# Sets up the backend service
+# Parameters: your IBM token and instance of your account in order to connect to the IBM hardware
+# as well as the minimum number of qubits you will need (int)
+# Returns the machine that will be used to run the program
 def backend_setup(token, instance, min_num_qubits):
     if not isinstance(token, str):
         raise ValueError(f"Token must be a string, got: {token}")
@@ -27,6 +31,7 @@ def backend_setup(token, instance, min_num_qubits):
     return backend
 
 
+# This function requires no imput, simply sets up the CHSH circuit we will use for the experiment and returns it
 def setup_chsh_circuit():
     theta = Parameter('$\\theta$')
     chsh_circuit = QuantumCircuit(2)
@@ -36,6 +41,9 @@ def setup_chsh_circuit():
     return chsh_circuit
 
 
+# This is where we set up our phase array
+# Parameters: the desired number of phases from 0 to 2pi (int)
+# Returns: phases (which is an array of phases) and then individual_phases which puts the array into list form (needed for IBM documentation)
 def make_phases(number_of_phases):
     if not isinstance(number_of_phases, int) or number_of_phases < 1:
         raise ValueError(f"Number of phases must be a positive integer, got: {number_of_phases}")
@@ -52,6 +60,10 @@ def make_observables(state1, state2, state3, state4):
     return observable1, observable2
 
 
+
+# This function takes in the CHSH circuit, backend, and desired optimization level
+# It then passes the circuit through IBM's built-in generate passmanager in order to generate a circuit obeying Instruction Set Architecture (ISA)
+# Returns the ISA circuit
 def make_isa_circuit(chsh_circuit, backend, optimization_level):
     if not isinstance(optimization_level, int):
         raise ValueError(f"Optimization level must be an integer, got: {optimization_level}")
@@ -61,6 +73,7 @@ def make_isa_circuit(chsh_circuit, backend, optimization_level):
     return chsh_isa_circuit
 
 
+# This function plots the results of both CHSH quantities from 0 to 2pi, including the classical and quantum bounds on the plot
 def plot_results(phases, chsh1_est, chsh2_est):
     fig, ax = plt.subplots(figsize = (10,6))
 
@@ -85,6 +98,7 @@ def plot_results(phases, chsh1_est, chsh2_est):
     plt.show()
 
 
+# This function runs the entire experiment from start to finish, with my recommended values for the experiment!
 def main():
     my_token = "itd8Yf4W2boZsNpZnn7rfPXs7L7z8AhSigm9ZYdAEcIN"
     my_instance = "crn:v1:bluemix:public:quantum-computing:us-east:a/8291768cb13d4fcb8bee320022d597e8:e1752a2c-f2bc-4054-adc5-ac56c0b76a1e::"
