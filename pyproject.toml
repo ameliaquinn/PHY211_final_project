@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "PHY211_final_project_ameliaquinn"
+version = "0.0.1"
+authors = [
+  { name = "Amelia Quinn", email = "aaquinn@smith.edu"},
+]
+description = "Package that conducts an experimental demonstration of Bell's theorem."
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+  "Programming Language :: Python 3",
+  "Operating System :: OS Independent",
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+
+[project.urls]
+Homepage = "https://github.com/ameliaquinn/PHY211_final_project"
+Issues = "https://github.com/ameliaquinn/PHY211_final_project/issues"
